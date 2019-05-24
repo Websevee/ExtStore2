@@ -156,6 +156,8 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\ApplicationContext.cs" />
+    <Compile Include="DAL\GenericRepository.cs" />
+    <Compile Include="DAL\UnitOfRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
