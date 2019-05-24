@@ -24,7 +24,7 @@ Ext.define('Front.controller.User', {
             form   = win.down('form'),
             values = form.getValues();
         Ext.Ajax.request({
-            url: '/Account/TestLogin',
+            url: '/Account/Login',
             params: values,
             success: function(response, options){
                 var data = Ext.decode(response.responseText);

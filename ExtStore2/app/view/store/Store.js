@@ -27,5 +27,11 @@ Ext.define('Front.view.store.Store', {
             dataIndex: 'Category',
             text: 'Category'  
         }
-    ]
+    ],
+    dockedItems: [{
+        xtype: 'pagingtoolbar',
+        store: 'Products',   // same store GridPanel is using
+        dock: 'bottom',
+        displayInfo: true
+    }]
 });

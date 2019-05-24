@@ -20,7 +20,7 @@ Ext.define('Front.controller.Store', {
     Product: function(grid, record) {
         var view = Ext.widget('product');
         view.down('form').loadRecord(record);
-        view.setTitle('ID: ' + record.data.Id);
+        view.setTitle('ID: ' + record.data.ProductId);
     },
 
 

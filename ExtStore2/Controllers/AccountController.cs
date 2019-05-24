@@ -62,10 +62,10 @@ namespace ExtStore2.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true });
                 }
             }
-            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false });
         }
 
         // АУТЕНТИФИКАЦИЯ
@@ -90,13 +90,13 @@ namespace ExtStore2.Controllers
                     {
                         user,
                         success = true
-                    }, JsonRequestBehavior.AllowGet);
+                    });
                 }
             }
             return Json(new
             {
                 success = false
-            }, JsonRequestBehavior.AllowGet);
+            });
 
         }
 
@@ -105,7 +105,7 @@ namespace ExtStore2.Controllers
         public JsonResult Logout()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true });
         }
 
         // УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
@@ -120,11 +120,11 @@ namespace ExtStore2.Controllers
                 IdentityResult result = await UserManager.DeleteAsync(_user);
                 if (result.Succeeded)
                 {
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true });
                 }
             }
 
-            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false });
         }
 
         // РЕДАКТИРОВАНИЕ ПОЛЬЗОВАТЕЛЯ
@@ -139,7 +139,7 @@ namespace ExtStore2.Controllers
                 IdentityResult result = await UserManager.UpdateAsync(model);
                 if (result.Succeeded)
                 {
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true });
                 }
                 else
                 {
@@ -151,7 +151,7 @@ namespace ExtStore2.Controllers
                 ModelState.AddModelError("", "Пользователь не найден");
             }
 
-            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false });
         }
 
 
@@ -170,7 +170,7 @@ namespace ExtStore2.Controllers
                     success = true
                 }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = false });
         }
 
 

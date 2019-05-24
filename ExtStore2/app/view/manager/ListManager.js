@@ -25,7 +25,7 @@ Ext.define('Front.view.manager.ListManager', {
 
     columns: [
         {
-            dataIndex: 'Id',
+            dataIndex: 'ProductId',
             text: 'Id'
         },
         {

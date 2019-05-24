@@ -79,6 +79,9 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -156,15 +159,21 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
-    <Compile Include="DAL\UnitOfRepository.cs" />
+    <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201905242008141_InitialCreate.cs" />
     <Compile Include="Migrations\201905242008141_InitialCreate.Designer.cs">
       <DependentUpon>201905242008141_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905242024097_Products.cs" />
+    <Compile Include="Migrations\201905242024097_Products.Designer.cs">
+      <DependentUpon>201905242024097_Products.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -193,6 +202,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\Order\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -204,6 +215,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905242008141_InitialCreate.resx">
       <DependentUpon>201905242008141_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905242024097_Products.resx">
+      <DependentUpon>201905242024097_Products.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

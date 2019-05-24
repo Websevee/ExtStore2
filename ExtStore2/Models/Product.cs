@@ -4,7 +4,7 @@ namespace ExtStore2.Models
 {
     public class Product
     {
-        public int ProductID { get; set; }
+        public int ProductId { get; set; }
         public string Code { get; set; }
         [Required]
         [StringLength(50)]

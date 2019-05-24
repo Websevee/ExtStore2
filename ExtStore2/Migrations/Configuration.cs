@@ -1,13 +1,13 @@
 namespace ExtStore2.Migrations
 {
+    using ExtStore2.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using ExtStore2.Models;
-    using System.Web;
-    using Microsoft.AspNet.Identity;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ExtStore2.DAL.ApplicationContext>
     {
@@ -31,7 +31,15 @@ namespace ExtStore2.Migrations
             roleManager.Create(role2);
 
             // создаем пользователей
-            var user = new User { Email = "admin@mail.ru", UserName = "admin@mail.ru" };
+            var user = new User
+            {
+                Email = "admin@mail.ru",
+                UserName = "admin@mail.ru",
+                Name = "Admin",
+                Address = "My address",
+                Code = "My code",
+                Discount = 50
+            };
             string password = "111111";
             var result = userManager.Create(user, password);
 
@@ -42,6 +50,16 @@ namespace ExtStore2.Migrations
                 userManager.AddToRole(user.Id, role1.Name);
                 userManager.AddToRole(user.Id, role2.Name);
             }
+            
+            var products = new List<Product>
+            {
+                new Product { Name = "Продукт 1", Price = 100, Category = "Category", Code = "Code 1" },
+                new Product { Name = "Продукт 2", Price = 500, Category = "Category", Code = "Code 2" },
+                new Product { Name = "Новый продукт 3", Price = 8350, Category = "New category", Code = "New code 1" },
+                new Product { Name = "Новый продукт 4", Price = 15613, Category = "New category", Code = "New code 2" }
+            };
+            products.ForEach(s => context.Products.AddOrUpdate(p => p.Name, s));
+            context.SaveChanges();
         }
     }
 }

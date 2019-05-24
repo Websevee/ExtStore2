@@ -15,6 +15,6 @@ namespace ExtStore2.Models
         public string Address { get; set; }
         [Range(0, 100)]
         public int Discount { get; set; }
-        //public virtual ICollection<CartItem> Cart { get; set; }
+        public virtual ICollection<CartItem> Cart { get; set; }
     }
 }

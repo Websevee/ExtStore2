@@ -43,11 +43,9 @@ Ext.define('Front.controller.Manager', {
             values = form.getValues();
         Ext.Ajax.request({
             type: 'json',
-            url: '/Product/CreateNew',
+            url: '/Product/Create',
             params: values,
             success: function(response, options){
-                console.log(response.responseText == "");
-                //console.log(response.responseText)
                 var data=Ext.decode(response.responseText);
                 if(data.success){
                     Ext.Msg.alert('Создание',data.message);
@@ -56,10 +54,12 @@ Ext.define('Front.controller.Manager', {
                 }
                 else{
                     Ext.Msg.alert('Создание','Не удалось добавить книгу в библиотеку');
+                    console.log(response, options, data)
                 }
             },
             failure: function(response, options){
-                console.log(response)
+                var data=Ext.decode(response.responseText);
+                console.log(response, options, data)
             }
         });
     },
@@ -68,10 +68,10 @@ Ext.define('Front.controller.Manager', {
         var win    = button.up('window'),
             form   = win.down('form'),
             values = form.getValues(),
-            id = form.getRecord().get('Id');
+            id = form.getRecord().get('ProductId');
             values.id=id;
         Ext.Ajax.request({
-            url: '/Product/EditItem',
+            url: '/Product/Edit',
             params: values,
             success: function(response){
                 var data=Ext.decode(response.responseText);
@@ -90,9 +90,9 @@ Ext.define('Front.controller.Manager', {
     deleteProduct: function(button) {
         var win    = button.up('window'),
             form   = win.down('form'),
-            id = form.getRecord().get('Id');
+            id = form.getRecord().get('ProductId');
         Ext.Ajax.request({
-            url: '/Product/DeleteItem',
+            url: '/Product/Delete',
             params: {id:id},
             success: function(response){
                 var data=Ext.decode(response.responseText);

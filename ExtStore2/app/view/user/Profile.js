@@ -11,7 +11,7 @@ Ext.define('Front.view.user.Profile', {
         Ext.Ajax.request({
             type: 'ajax',
             method: 'GET',
-            url: 'Account/NowUser',
+            url: 'Account/IsAuthenticated',
             
             success: function(response, options){
                 var data = Ext.decode(response.responseText); // декодируем полученные json-объекты

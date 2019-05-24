@@ -14,8 +14,6 @@ Ext.define('Front.view.main.Main', {
                         {
                             xtype: 'store',
                         }, {
-                            xtype: 'cart',
-                        }, {
                             xtype: 'profile'
                         }
                     ]
