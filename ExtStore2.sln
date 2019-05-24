@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtStore2", "ExtStore2\ExtStore2.csproj", "{3E60ACFE-C295-4958-9F8B-81B09E86D51D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E60ACFE-C295-4958-9F8B-81B09E86D51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E60ACFE-C295-4958-9F8B-81B09E86D51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E60ACFE-C295-4958-9F8B-81B09E86D51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E60ACFE-C295-4958-9F8B-81B09E86D51D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {470522A9-D335-40F6-9EB6-9CAE5EA12589}
+	EndGlobalSection
+EndGlobal
