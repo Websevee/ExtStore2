@@ -5,9 +5,8 @@ Ext.application({
     
     models: ['Product'],    
     stores: ['Products'],
-    controllers: ['User'],
 
-    controllers: ['User', 'Manager', 'Store'],
+    controllers: ['User', 'Manager', 'Store', 'Order'],
     
 
     launch: function () {

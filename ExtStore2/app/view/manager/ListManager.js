@@ -19,6 +19,12 @@ Ext.define('Front.view.manager.ListManager', {
                 xtype: 'button',
                 text: 'Add Product',
                 action: 'onAdd'
+            },
+            {
+                xtype: 'pagingtoolbar',
+                store: 'Products',
+                //dock: 'bottom',
+                displayInfo: true
             }
         ]
     }],

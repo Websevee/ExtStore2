@@ -13,7 +13,7 @@ namespace ExtStore2.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "ExtStore2.DAL.ApplicationContext";
         }
 
@@ -58,6 +58,11 @@ namespace ExtStore2.Migrations
                 new Product { Name = "Новый продукт 3", Price = 8350, Category = "New category", Code = "New code 1" },
                 new Product { Name = "Новый продукт 4", Price = 15613, Category = "New category", Code = "New code 2" }
             };
+            for (int i = 1; i <= 50; i++)
+            {
+                products.Add(new Product { Name = "Product " + i, Price = i*10^i+i, Category = "Category " + i, Code = "Code " + i });
+            };
+
             products.ForEach(s => context.Products.AddOrUpdate(p => p.Name, s));
             context.SaveChanges();
         }

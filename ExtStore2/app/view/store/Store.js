@@ -30,7 +30,7 @@ Ext.define('Front.view.store.Store', {
     ],
     dockedItems: [{
         xtype: 'pagingtoolbar',
-        store: 'Products',   // same store GridPanel is using
+        store: 'Products',
         dock: 'bottom',
         displayInfo: true
     }]

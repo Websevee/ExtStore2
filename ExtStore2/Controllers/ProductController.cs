@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ExtStore2.DAL;
 using ExtStore2.Models;
+using PagedList;
 
 
 namespace ExtStore2.Controllers
@@ -18,14 +19,19 @@ namespace ExtStore2.Controllers
         private UnitOfWork unitOfWork = new UnitOfWork();
 
         [AllowAnonymous]
-        public JsonResult Index(int? page)
+        public JsonResult Index(int? page, int? limit)
         {
             var _list = unitOfWork.ProductRepository.Get();
+            var total = _list.Count();
+
+            int pageSize = (limit ?? total);
+            int pageNumber = (page ?? 1);
 
             return Json(new
             {
-                data = _list,
-                success = true
+                data = _list.ToPagedList(pageNumber, pageSize),
+                success = true,
+                total
             }, JsonRequestBehavior.AllowGet);
         }
 

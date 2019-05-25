@@ -27,11 +27,11 @@ Ext.define('Front.controller.Store', {
     onAddToCart: function (button) {
         var win    = button.up('window');
         form   = win.down('form');
-        id = form.getRecord().get('Id');
+        id = form.getRecord().get('ProductId');
 
         Ext.Ajax.request({
-            url: '/ShoppingCart/AddToCart/',
-            params: {id:id},
+            url: 'Order/AddCartItem',
+            params: {productId:id},
             success: function(response, options){
                 var data = Ext.decode(response.responseText);
                 if(data.success){

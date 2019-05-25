@@ -1,14 +1,13 @@
-Ext.define('Front.store.Products', {
+Ext.define('Front.store.Cart', {
     extend: 'Ext.data.Store',
-    model: 'Front.model.Product',
+    model: 'Front.model.CartItem',
 
     autoLoad: true,
     autoSync: true,
-    pageSize: 15,
 
     proxy: {
         type: 'ajax',
-        url: 'Product',
+        url: 'Order/GetCart',
         reader: {
             type: 'json',
             root: 'data',

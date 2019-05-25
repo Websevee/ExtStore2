@@ -11,9 +11,15 @@ using System.Web.Mvc;
 
 namespace ExtStore2.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
+
+        public OrderController(UnitOfWork uow)
+        {
+            unitOfWork = uow;
+        }
 
         private MyUserManager UserManager
         {
@@ -31,7 +37,7 @@ namespace ExtStore2.Controllers
                 return user;
             }
         }
-
+        
         public JsonResult GetCart()
         {
             User user = _user;
@@ -51,15 +57,15 @@ namespace ExtStore2.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddCartItem([Bind(Include = "ProductID")]Product product)
+        public JsonResult AddCartItem(int productId)
         {
             User user = _user;
 
-            var cartitem = user.Cart.FirstOrDefault(cart => cart.ProductId == product.ProductId);
+            var cartitem = user.Cart.FirstOrDefault(cart => cart.ProductId == productId);
 
             if (cartitem == null)
             {
-                cartitem = new CartItem { UserId = user.Id, ProductId = product.ProductId, Count = 1 };
+                cartitem = new CartItem { UserId = user.Id, ProductId = productId, Count = 1 };
 
                 unitOfWork.CartRepository.Insert(cartitem);
                 unitOfWork.Save();
@@ -109,7 +115,7 @@ namespace ExtStore2.Controllers
 
         public JsonResult GetUserOrders()
         {
-            return Json(new { data = unitOfWork.OrderRepository.Get().Where(i => i.UserId == _user.Id) });
+            return Json(new { data = unitOfWork.OrderRepository.Get().Where(i => i.UserId == _user.Id) }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
