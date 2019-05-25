@@ -12,10 +12,6 @@ Ext.define('Front.view.store.Store', {
 
     columns: [
         {
-            dataIndex: 'Code',
-            text: 'Code'  
-        },
-        {
             dataIndex: 'Name',
             text: 'Name'  
         },

@@ -15,11 +15,11 @@ namespace ExtStore2.Tests.Controllers
         public void GetCart()
         {
             // Arrange
-            
+            /*
             var mock = new Mock<UnitOfWork>();
             mock.Setup(a => a.CartRepository.GetByID(1)).Returns(new CartItem());
             OrderController controller = new OrderController(mock.Object);
-
+            */
             // Act
             JsonResult result = controller.GetCart() as JsonResult;
 

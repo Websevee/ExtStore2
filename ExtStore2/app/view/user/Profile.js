@@ -16,7 +16,7 @@ Ext.define('Front.view.user.Profile', {
             success: function(response, options){
                 var data = Ext.decode(response.responseText); // декодируем полученные json-объекты
                 // устанавливаем для каждого свойства декодированное значение
-                comp.getComponent('txtName').setText(data.user.Email);
+                comp.getComponent('txtName').setText(data.user.Email + ' | Roles: ' + data.user.Roles);
                 console.log(data.user);
 
                 if (data.admin) 

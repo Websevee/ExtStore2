@@ -31,6 +31,7 @@ Ext.define('Front.controller.Manager', {
     editProduct: function(grid, record) {
         var view = Ext.widget('productmanager');
         view.down('form').loadRecord(record);
+        view.setTitle('ID: ' + record.data.ProductId);
     },
 
     onAdd: function() {

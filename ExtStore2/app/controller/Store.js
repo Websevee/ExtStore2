@@ -5,7 +5,6 @@ Ext.define('Front.controller.Store', {
     models: ['Product'],
     views: ['store.Store', 'store.Product'],
     
-
     init: function() {
         this.control({
             'store': {
@@ -22,7 +21,6 @@ Ext.define('Front.controller.Store', {
         view.down('form').loadRecord(record);
         view.setTitle('ID: ' + record.data.ProductId);
     },
-
 
     onAddToCart: function (button) {
         var win    = button.up('window');

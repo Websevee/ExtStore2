@@ -49,9 +49,11 @@ namespace ExtStore2.Controllers
                     Name = model.Name,
                     Address = model.Address,
                     Code = model.Code,
-                    Discount = model.Discount
+                    Discount = 0
                 };
                 IdentityResult result = UserManager.Create(user, model.Password);
+
+                UserManager.AddToRole(user.Id, "user"); // добавление роли
 
                 if (result.Succeeded)
                 {
@@ -159,13 +161,27 @@ namespace ExtStore2.Controllers
         {
             User user = await UserManager.FindByEmailAsync(User.Identity.Name);
 
+
+
             if (User.Identity.IsAuthenticated && user != null)
             {
                 var admin = user.Roles.Any(elem => elem.RoleId == RoleManager.FindByName("admin").Id);
 
+                List<string> roles = new List<string>();
+                user.Roles.ToList().ForEach(i => roles.Add(RoleManager.FindById(i.RoleId).Name));
+                    
+
                 return Json(new
                 {
-                    user,
+                    user = new
+                    {
+                        Email = user.Email,
+                        Name = user.Name,
+                        Address = user.Address,
+                        Code = user.Code,
+                        Discount = user.Discount,
+                        Roles = roles
+                    },
                     admin,
                     success = true
                 }, JsonRequestBehavior.AllowGet);

@@ -17,7 +17,9 @@ Ext.define('Front.view.user.Login', {
                         {
                             xtype: 'textfield',
                             name : 'Email',
-                            fieldLabel: 'Email'
+                            fieldLabel: 'Email',
+                            msgTarget: 'under',
+                            vtype: 'email'
                         },{
                             xtype: 'textfield',
                             name : 'Password',
@@ -39,7 +41,9 @@ Ext.define('Front.view.user.Login', {
                             xtype: 'textfield',
                             name : 'Email',
                             fieldLabel: 'Email',
-                            inputType: 'email'
+                            inputType: 'email',
+                            msgTarget: 'under',
+                            vtype: 'email'
                         }, {
                             xtype: 'textfield',
                             name : 'Password',
@@ -47,14 +51,13 @@ Ext.define('Front.view.user.Login', {
                             inputType: 'password'
                         }, {
                             xtype: 'textfield',
-                            name : 'PasswordConfirm',
-                            fieldLabel: 'PasswordConfirm',
+                            name : 'ConfirmPassword',
+                            fieldLabel: 'ConfirmPassword',
                             inputType: 'password'
                         }, {
-                            xtype: 'numberfield',
-                            name : 'Year',
-                            fieldLabel: 'Year',
-                            inputType: 'int'
+                            xtype: 'textfield',
+                            name : 'Name',
+                            fieldLabel: 'Name',
                         }, {
                             xtype: 'button',
                             text: 'Register',

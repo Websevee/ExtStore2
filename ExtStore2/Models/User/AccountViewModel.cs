@@ -44,8 +44,6 @@ namespace ExtStore2.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public string Code { get; set; }
         public string Address { get; set; }
-        [Range(0, 100)]
-        public int Discount { get; set; }
     }
 
     public class EditUserViewModel

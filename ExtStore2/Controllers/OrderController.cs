@@ -11,15 +11,10 @@ using System.Web.Mvc;
 
 namespace ExtStore2.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class OrderController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
-
-        public OrderController(UnitOfWork uow)
-        {
-            unitOfWork = uow;
-        }
 
         private MyUserManager UserManager
         {
@@ -88,7 +83,7 @@ namespace ExtStore2.Controllers
         {
             User user = _user;
 
-            if (user != null)
+            if (user != null && user.Cart.Count != 0)
             {
                 var cart = user.Cart;
 
@@ -108,9 +103,11 @@ namespace ExtStore2.Controllers
                 }
 
                 unitOfWork.Save();
+
+                return Json(new { success = true });
             }
 
-            return Json(new { success = true });
+            return Json(new { success = false });
         }
 
         public JsonResult GetUserOrders()

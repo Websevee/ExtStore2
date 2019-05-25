@@ -2,10 +2,10 @@ Ext.define('Front.view.store.Product', {
     extend: 'Ext.window.Window',
     xtype: 'product',
  
-    //title: '',
     layout: 'fit',
+    minWidth: 300,
     autoShow: true,
-    //closable: false,
+    closable: false,
 
     
     
@@ -14,21 +14,24 @@ Ext.define('Front.view.store.Product', {
                 xtype: 'form',
                 items: [
                     {
-                        xtype: 'textfield',
-                        name : 'Code',
-                        fieldLabel: 'Code'
-                    },{
-                        xtype: 'textfield',
+                        xtype: 'displayfield',
                         name : 'Name',
                         fieldLabel: 'Название'
-                    },{
-                        xtype: 'textfield',
+                    },
+                    {
+                        xtype: 'displayfield',
                         name : 'Price',
                         fieldLabel: 'Price'
-                    },{
-                        xtype: 'textfield',
+                    },
+                    {
+                        xtype: 'displayfield',
                         name : 'Category',
                         fieldLabel: 'Category'
+                    },
+                    {
+                        xtype: 'displayfield',
+                        name : 'Code',
+                        fieldLabel: 'Code'
                     },
                 ],
                 

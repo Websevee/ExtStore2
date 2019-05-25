@@ -60,7 +60,7 @@ namespace ExtStore2.Migrations
             };
             for (int i = 1; i <= 50; i++)
             {
-                products.Add(new Product { Name = "Product " + i, Price = i*10^i+i, Category = "Category " + i, Code = "Code " + i });
+                products.Add(new Product { Name = "Product " + i, Price = i*1000+i*3, Category = "Category " + i, Code = "Code " + i });
             };
 
             products.ForEach(s => context.Products.AddOrUpdate(p => p.Name, s));

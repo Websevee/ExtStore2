@@ -1,6 +1,5 @@
 Ext.define('Front.controller.User', {
     extend: 'Ext.app.Controller',
-    
     views: ['user.Login', 'main.Main', 'user.Profile'],
 
     init: function() {
@@ -11,7 +10,6 @@ Ext.define('Front.controller.User', {
             'button[action=onLogoffClick]': {
                 click: this.onLogoffClick
             },
-
             'button[action=onRegisterClick]': {
                 click: this.onRegisterClick
             },
@@ -43,7 +41,7 @@ Ext.define('Front.controller.User', {
         var win    = button.up('viewport');
         Ext.Ajax.request({
             method: "POST",
-            url: '/Account/TestLogOff',
+            url: '/Account/Logout',
             success: function(response, options){
                 var data = Ext.decode(response.responseText);
                 if(data.success){
@@ -63,7 +61,7 @@ Ext.define('Front.controller.User', {
             values = form.getValues();
         Ext.Ajax.request({
             method: "POST",
-            url: '/Account/TestRegister',
+            url: '/Account/Register',
             params: values,
             success: function(response, options){
                 var data = Ext.decode(response.responseText);
