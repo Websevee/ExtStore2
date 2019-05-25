@@ -13,19 +13,6 @@ Ext.define('Front.view.order.Orders', {
         console.log('KEK', this.getStore());
     },
 
-    dockedItems: [{
-        xtype: 'toolbar',
-        dock: 'top',
-
-        items: [
-            {
-                xtype: 'button',
-                text: 'Add Product',
-                //action: 'onAdd'
-            }
-        ]
-    }],
-
     columns: [
         {
             dataIndex: 'UserId',
