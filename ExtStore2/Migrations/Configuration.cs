@@ -13,8 +13,8 @@ namespace ExtStore2.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "ExtStore2.DAL.ApplicationContext";
+            AutomaticMigrationsEnabled = false;
+            //ContextKey = "ExtStore2.DAL.ApplicationContext";
         }
 
         protected override void Seed(ExtStore2.DAL.ApplicationContext context)
@@ -50,7 +50,7 @@ namespace ExtStore2.Migrations
                 userManager.AddToRole(user.Id, role1.Name);
                 userManager.AddToRole(user.Id, role2.Name);
             }
-            
+
             var products = new List<Product>
             {
                 new Product { Name = "Продукт 1", Price = 100, Category = "Category", Code = "Code 1" },
@@ -60,7 +60,7 @@ namespace ExtStore2.Migrations
             };
             for (int i = 1; i <= 50; i++)
             {
-                products.Add(new Product { Name = "Product " + i, Price = i*1000+i*3, Category = "Category " + i, Code = "Code " + i });
+                products.Add(new Product { Name = "Product " + i, Price = i * 1000 + i * 3, Category = "Category " + i, Code = "Code " + i });
             };
 
             products.ForEach(s => context.Products.AddOrUpdate(p => p.Name, s));
