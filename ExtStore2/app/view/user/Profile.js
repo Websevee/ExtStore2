@@ -3,7 +3,10 @@ Ext.define('Front.view.user.Profile', {
     xtype: 'profile',
 
     title: 'Profile',
-    //layout: 'fit',
+
+    autoscroll: true,
+    //overflowY: 'scroll',
+    height: 1500,
 
     beforeShow: function () {
         var comp = this;
@@ -17,10 +20,14 @@ Ext.define('Front.view.user.Profile', {
                 var data = Ext.decode(response.responseText); // декодируем полученные json-объекты
                 // устанавливаем для каждого свойства декодированное значение
                 comp.getComponent('txtName').setText(data.user.Email + ' | Roles: ' + data.user.Roles);
-                console.log(data.user);
 
                 if (data.admin) 
-                    comp.getComponent('list').show()
+                {
+                    comp.getComponent('productsmanager').show();
+                    comp.getComponent('ordersmanager').show();
+                    comp.getComponent('usersmanager').show();
+                }
+                    
             },
             failure: function(response, options){
                 alert("Ошибка: " + response.statusText);
@@ -44,9 +51,27 @@ Ext.define('Front.view.user.Profile', {
             itemId: 'txtName',
             margin: '10'
         }, {
-            xtype: 'listmanager',
-            title: 'StoreManager',
-            itemId: 'list',
+            xtype: 'productsmanager',
+            title: 'Products Manager',
+            itemId: 'productsmanager',
+            collapsible:true,
+            collapsed: true,
+            
+            hidden: true
+        }, {
+            xtype: 'ordersmanager',
+            title: 'Orders Manager',
+            itemId: 'ordersmanager',
+            collapsible:true,
+            collapsed: true,
+
+            hidden: true
+        }, {
+            xtype: 'usersmanager',
+            title: 'Users Manager',
+            itemId: 'usersmanager',
+            collapsible:true,
+            collapsed: true,
             
             hidden: true
         }

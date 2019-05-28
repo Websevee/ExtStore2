@@ -1,6 +1,6 @@
-Ext.define('Front.view.manager.ProductManager', {
+Ext.define('Front.view.product.ProductEdit', {
     extend: 'Ext.window.Window',
-    xtype: 'productmanager',
+    xtype: 'productedit',
  
     title: 'Продукт',
     layout: 'fit',
@@ -29,25 +29,16 @@ Ext.define('Front.view.manager.ProductManager', {
                     },
                 ]
             }];
-        this.dockedItems=[{
-            xtype: 'toolbar',
-            docked: 'top',
-            items: [
-                {
-                    text: 'Создать',
-                    action: 'create'
-                },
-                {
-                    text: 'Очистить',
-                    action: 'clear'
-                }
-            ]
-        }];
         this.buttons = [
             {
                 text: 'Сохранить',
                 action: 'save'
-            },{
+            },
+            {
+                text: 'Очистить',
+                action: 'clear'
+            },
+            {
                 text: 'Удалить',
                 scope: this,
                 action: 'delete'

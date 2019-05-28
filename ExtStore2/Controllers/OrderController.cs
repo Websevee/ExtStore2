@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ExtStore2.Controllers
 {
@@ -23,6 +24,13 @@ namespace ExtStore2.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<MyUserManager>();
             }
         }
+        private MyRoleManager RoleManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<MyRoleManager>();
+            }
+        }
 
         private User _user
         {
@@ -32,7 +40,7 @@ namespace ExtStore2.Controllers
                 return user;
             }
         }
-        
+
         public JsonResult GetCart()
         {
             User user = _user;
@@ -110,6 +118,23 @@ namespace ExtStore2.Controllers
             return Json(new { success = false });
         }
 
+        [Authorize(Roles = "admin")]
+        public JsonResult GetOrders(int? page, int? limit)
+        {
+            var _list = unitOfWork.OrderRepository.Get();
+            var total = _list.Count();
+
+            int pageSize = (limit ?? total);
+            int pageNumber = (page ?? 1);
+
+            return Json(new
+            {
+                data = _list.ToPagedList(pageNumber, pageSize),
+                success = true,
+                total
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetUserOrders()
         {
             return Json(new { data = unitOfWork.OrderRepository.Get().Where(i => i.UserId == _user.Id) }, JsonRequestBehavior.AllowGet);
@@ -130,7 +155,7 @@ namespace ExtStore2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "OrderDate,ShipmentDate,OrderNumber,Status")] Order order)
+        public ActionResult Edit([Bind(Include = "OrderId,UserId,OrderNumber,Status")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -146,10 +171,19 @@ namespace ExtStore2.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            unitOfWork.OrderRepository.Delete(id);
-            unitOfWork.Save();
+            if (unitOfWork.OrderRepository.GetByID(id).Status == "New" || _user.Roles.First(i => i.RoleId == RoleManager.FindByName("admin").Id) != null)
+            {
+                unitOfWork.OrderRepository.Delete(id);
+                unitOfWork.Save();
 
-            return Json(new { success = true });
+                return Json(new { success = true });
+            }
+
+            else
+            {
+                return Json(new { success = false });
+            }
+                
         }
 
         protected override void Dispose(bool disposing)

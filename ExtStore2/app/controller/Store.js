@@ -3,7 +3,7 @@ Ext.define('Front.controller.Store', {
 
     stores: ['Products'],
     models: ['Product'],
-    views: ['store.Store', 'store.Product'],
+    views: ['product.Store', 'product.ProductDetails'],
     
     init: function() {
         this.control({
@@ -17,7 +17,7 @@ Ext.define('Front.controller.Store', {
     },
 
     Product: function(grid, record) {
-        var view = Ext.widget('product');
+        var view = Ext.widget('productdetails');
         view.down('form').loadRecord(record);
         view.setTitle('ID: ' + record.data.ProductId);
     },

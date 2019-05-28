@@ -1,10 +1,11 @@
-Ext.define('Front.view.manager.ListManager', {
+Ext.define('Front.view.product.ProductsManager', {
     extend: 'Ext.grid.Panel',
-    xtype: 'listmanager',
+    xtype: 'productsmanager',
     store: 'Products',
     
-    title: 'ListManager',
+    title: 'Products Manager',
     height: 500,
+    width: 600,
 
     beforeShow: function () {
         this.getStore().load();
@@ -16,16 +17,16 @@ Ext.define('Front.view.manager.ListManager', {
 
         items: [
             {
-                xtype: 'button',
-                text: 'Add Product',
-                action: 'onAdd'
-            },
-            {
                 xtype: 'pagingtoolbar',
                 store: 'Products',
                 //dock: 'bottom',
                 displayInfo: true
-            }
+            },
+            {
+                xtype: 'button',
+                text: 'Add Product',
+                action: 'onAdd'
+            },
         ]
     }],
 

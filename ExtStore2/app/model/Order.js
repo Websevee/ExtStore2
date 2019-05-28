@@ -2,6 +2,7 @@ Ext.define('Front.model.Order', {
     extend: 'Ext.data.Model',
     fields: 
     [
+        { name: 'OrderId' }, 
         { name: 'UserId', type: 'string' }, 
         { name: 'OrderDate' }, 
         { name: 'ShipmentDate' }, 

@@ -1,14 +1,12 @@
-Ext.define('Front.view.store.Product', {
+Ext.define('Front.view.product.ProductDetails', {
     extend: 'Ext.window.Window',
-    xtype: 'product',
+    xtype: 'productdetails',
  
     layout: 'fit',
     minWidth: 300,
     autoShow: true,
     closable: false,
 
-    
-    
     initComponent: function() {
         this.items = [{
                 xtype: 'form',

@@ -1,4 +1,4 @@
-Ext.define('Front.view.store.Store', {
+Ext.define('Front.view.product.Store', {
     extend: 'Ext.grid.Panel',
     xtype: 'store',
     store: 'Products',

@@ -6,7 +6,7 @@ Ext.application({
     models: ['Product'],    
     stores: ['Products'],
 
-    controllers: ['User', 'Manager', 'Store', 'Order'],
+    controllers: ['User', 'Product', 'Store', 'Order'],
     
 
     launch: function () {
@@ -16,18 +16,14 @@ Ext.application({
                 var data=Ext.decode(response.responseText);
 
                 if(data.success){
-                    console.log('Main', data.user);
                     Ext.widget('main');
-
-                    localStorage.setItem('user', data.user);
+                    localStorage.setItem('user', data.admin);
                 }
                 else{
-                    console.log('Login', data);
                     Ext.widget('login');
                 }
             },
-            failure: function(message, message2){
-                console.log('Login', message, message2);
+            failure: function(){
                 Ext.widget('login');
             }
 

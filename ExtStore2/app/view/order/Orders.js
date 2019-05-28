@@ -7,16 +7,48 @@ Ext.define('Front.view.order.Orders', {
     title: 'Orders',
     height: 500,
 
+    filterable: true,
+
+    initComponent: function () {
+        var parent = this;
+        var atext = Ext.widget('textfield');
+        atext.value = "";
+        atext.fieldLabel = 'Status';
+
+        this.dockedItems = [{
+            xtype: 'toolbar',
+            dock: 'top',
+
+            items: [
+                {
+                    xtype: atext,
+                },
+                {
+                    xtype: 'button',
+                    text: 'Status',
+                    handler: function(){
+                        parent.getStore().clearFilter(true);
+                        parent.getStore().filter('Status', atext.value);
+                    }
+                }
+            ]
+        }],
+        this.callParent();
+    },
+    
     beforeShow: function () {
         this.getStore().load();
-
-        console.log('KEK', this.getStore());
+        console.log(this);
     },
 
     columns: [
         {
-            dataIndex: 'UserId',
-            text: 'UserId'
+            dataIndex: 'Status',
+            text: 'Status',
+            filterable: true,
+            filter: {
+                type: 'string'
+            }
         },
         {
             dataIndex: 'OrderDate',
@@ -28,11 +60,9 @@ Ext.define('Front.view.order.Orders', {
         },
         {
             dataIndex: 'OrderNumber',
-            text: 'OrderNumber'  
+            text: 'OrderNumber',
         },
-        {
-            dataIndex: 'Status',
-            text: 'Status'  
-        }
-    ]
+    ],
+
+    
 });

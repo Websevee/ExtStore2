@@ -14,7 +14,7 @@ namespace ExtStore2.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            //ContextKey = "ExtStore2.DAL.ApplicationContext";
+            ContextKey = "ExtStore2.DAL.ApplicationContext";
         }
 
         protected override void Seed(ExtStore2.DAL.ApplicationContext context)

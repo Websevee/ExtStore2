@@ -1,9 +1,14 @@
 Ext.define('Front.controller.User', {
     extend: 'Ext.app.Controller',
-    views: ['user.Login', 'main.Main', 'user.Profile'],
+    models: ['User'],
+    stores: ['Users'],
+    views: ['user.Login', 'main.Main', 'user.Profile', 'user.UsersManager', 'user.UserEdit'],
 
     init: function() {
         this.control({
+            'usersmanager': {
+                itemdblclick: this.User
+            },
             'login button[action=onLoginClick]': {
                 click: this.onLoginClick
             },
@@ -13,7 +18,19 @@ Ext.define('Front.controller.User', {
             'button[action=onRegisterClick]': {
                 click: this.onRegisterClick
             },
+            'button[action=onSave]': {
+                click: this.onSave
+            },
+            'button[action=onDelete]': {
+                click: this.onDelete
+            },
         });
+    },
+
+    User: function(grid, record) {
+        var view = Ext.widget('useredit');
+        view.down('form').loadRecord(record);
+        view.setTitle('ID: ' + record.data.ProductId);
     },
 
 
@@ -29,6 +46,7 @@ Ext.define('Front.controller.User', {
                 if(data.success){
                     win.destroy();     
                     Ext.widget('main'); 
+                    localStorage.setItem('user', data.admin);
                 }
                 else{
                     Ext.Msg.alert('Ошибка','Не удалось войти');
@@ -74,5 +92,5 @@ Ext.define('Front.controller.User', {
                 }
             }
         });
-    }
+    },
 })

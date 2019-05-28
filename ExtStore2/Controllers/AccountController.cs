@@ -9,6 +9,7 @@ using ExtStore2.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using PagedList;
 
 namespace ExtStore2.Controllers
 {
@@ -77,6 +78,7 @@ namespace ExtStore2.Controllers
             if (ModelState.IsValid)
             {
                 User user = await UserManager.FindAsync(model.Email, model.Password);
+                var admin = user.Roles.Any(elem => elem.RoleId == RoleManager.FindByName("admin").Id);
 
                 if (user != null)
                 {
@@ -90,9 +92,9 @@ namespace ExtStore2.Controllers
 
                     return Json(new
                     {
-                        user,
+                        admin,
                         success = true
-                    });
+                    }, JsonRequestBehavior.AllowGet);
                 }
             }
             return Json(new
@@ -189,6 +191,23 @@ namespace ExtStore2.Controllers
             return Json(new { success = false });
         }
 
+        [Authorize(Roles="admin")]
+        public JsonResult GetUsers(int? page, int? limit)
+        {
+            var _list = UserManager.Users.ToList();
+            var total = _list.Count();
+
+            int pageSize = (limit ?? total);
+            int pageNumber = (page ?? 1);
+
+            return Json(new
+            {
+                data = _list.ToPagedList(pageNumber, pageSize),
+                success = true,
+                total
+            }, JsonRequestBehavior.AllowGet);
+
+        }
 
     }
 }
