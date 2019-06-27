@@ -122,7 +122,7 @@ namespace ExtStore2.Controllers
         [Authorize(Roles = "admin")]
         public JsonResult GetOrders(int? page, int? limit)
         {
-            var _list2 = from order in unitOfWork.OrderRepository.Get()
+            var _list = from order in unitOfWork.OrderRepository.Get()
                         select new OrderViewModel()
                         {
                             OrderId = order.OrderId,
@@ -133,7 +133,7 @@ namespace ExtStore2.Controllers
                             Status = order.Status,
                             OrderItems = order.OrderItems.ToArray()
                         };
-            var _list = unitOfWork.OrderRepository.Get();
+            //var _list = unitOfWork.OrderRepository.Get();
             var total = _list.Count();
 
             int pageSize = (limit ?? total);
@@ -149,7 +149,20 @@ namespace ExtStore2.Controllers
 
         public JsonResult GetUserOrders()
         {
-            return Json(new { data = unitOfWork.OrderRepository.Get().Where(i => i.UserId == _user.Id) }, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                data = from order in unitOfWork.OrderRepository.Get().Where(i => i.UserId == _user.Id)
+                       select new OrderViewModel()
+                       {
+                           OrderId = order.OrderId,
+                           UserId = order.UserId,
+                           OrderDate = order.OrderDate.ToString(),
+                           ShipmentDate = order.ShipmentDate.ToString(),
+                           OrderNumber = order.OrderNumber,
+                           Status = order.Status,
+                           OrderItems = order.OrderItems.ToArray()
+                       }
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
