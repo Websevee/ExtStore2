@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201905260058504_InitialCreate.Designer.cs">
       <DependentUpon>201905260058504_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906011356378_new.cs" />
+    <Compile Include="Migrations\201906011356378_new.Designer.cs">
+      <DependentUpon>201906011356378_new.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Order.cs" />
@@ -194,30 +198,40 @@
     <Compile Include="Models\User\MyUserManager.cs" />
     <Compile Include="Models\User\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\OrderItemViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\controller\Manager.js" />
     <Content Include="app\controller\Order.js" />
+    <Content Include="app\controller\Product.js" />
     <Content Include="app\controller\Store.js" />
     <Content Include="app\controller\User.js" />
     <Content Include="app\model\CartItem.js" />
     <Content Include="app\model\Order.js" />
     <Content Include="app\model\OrderItem.js" />
     <Content Include="app\model\Product.js" />
+    <Content Include="app\model\User.js" />
+    <Content Include="app\store\AllOrders.js" />
     <Content Include="app\store\Cart.js" />
     <Content Include="app\store\Orders.js" />
     <Content Include="app\store\Products.js" />
+    <Content Include="app\store\Users.js" />
     <Content Include="app\view\main\Main.js" />
-    <Content Include="app\view\manager\ListManager.js" />
-    <Content Include="app\view\manager\ProductManager.js" />
     <Content Include="app\view\order\Cart.js" />
-    <Content Include="app\view\order\Order.js" />
+    <Content Include="app\view\order\OrderDetails.js" />
+    <Content Include="app\view\order\OrderEdit.js" />
     <Content Include="app\view\order\Orders.js" />
-    <Content Include="app\view\store\Product.js" />
-    <Content Include="app\view\store\Store.js" />
+    <Content Include="app\view\order\OrdersManager.js" />
+    <Content Include="app\view\product\ProductCreate.js" />
+    <Content Include="app\view\product\ProductDetails.js" />
+    <Content Include="app\view\product\ProductEdit.js" />
+    <Content Include="app\view\product\ProductsManager.js" />
+    <Content Include="app\view\product\Store.js" />
     <Content Include="app\view\user\Login.js" />
     <Content Include="app\view\user\Profile.js" />
+    <Content Include="app\view\user\UserEdit.js" />
+    <Content Include="app\view\user\UsersManager.js" />
     <Content Include="Content\Site.css" />
     <Content Include="ext-4.2.1\ext-all-debug.js" />
     <Content Include="ext-4.2.1\ext-all.js" />
@@ -1826,6 +1840,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905260058504_InitialCreate.resx">
       <DependentUpon>201905260058504_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906011356378_new.resx">
+      <DependentUpon>201906011356378_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

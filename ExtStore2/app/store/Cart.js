@@ -2,7 +2,7 @@ Ext.define('Front.store.Cart', {
     extend: 'Ext.data.Store',
     model: 'Front.model.CartItem',
 
-    autoLoad: true,
+    //autoLoad: true,
     autoSync: true,
 
     proxy: {

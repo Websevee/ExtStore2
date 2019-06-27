@@ -9,6 +9,7 @@ Ext.define('Front.view.order.OrdersManager', {
 
     beforeShow: function () {
         this.getStore().load();
+        console.log(this.getStore());
     },
 
     dockedItems: [{

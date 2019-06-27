@@ -2,7 +2,7 @@ Ext.define('Front.store.Products', {
     extend: 'Ext.data.Store',
     model: 'Front.model.Product',
 
-    autoLoad: true,
+    //autoLoad: true,
     autoSync: true,
     pageSize: 15,
 

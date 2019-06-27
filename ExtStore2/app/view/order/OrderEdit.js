@@ -1,20 +1,20 @@
 Ext.define('Front.view.order.OrderEdit', {
     extend: 'Ext.window.Window',
     xtype: 'orderedit',
+    //model: 'Order',
  
     title: 'Продукт',
     layout: 'fit',
     autoShow: true,
  
     initComponent: function() {
-
         var statuses = Ext.create('Ext.data.Store', {
             fields: ['status'],
             data : [
                 {"status":"New"},
                 {"status":"Progress"},
                 {"status":"End"}
-            ]
+            ],
         });
 
         this.items = [{
@@ -45,6 +45,7 @@ Ext.define('Front.view.order.OrderEdit', {
                         valueField: 'status',
                         fieldLabel: 'Status'
                     }
+
                 ]
             }];
         this.buttons = [

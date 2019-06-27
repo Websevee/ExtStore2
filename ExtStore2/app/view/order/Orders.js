@@ -36,9 +36,8 @@ Ext.define('Front.view.order.Orders', {
         this.callParent();
     },
     
-    beforeShow: function () {
+    beforeRender: function () {
         this.getStore().load();
-        console.log(this);
     },
 
     columns: [

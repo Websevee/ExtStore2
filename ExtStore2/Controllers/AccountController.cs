@@ -161,34 +161,36 @@ namespace ExtStore2.Controllers
 
         public async Task<JsonResult> IsAuthenticated()
         {
-            User user = await UserManager.FindByEmailAsync(User.Identity.Name);
-
-
-
-            if (User.Identity.IsAuthenticated && user != null)
+            if (User.Identity.IsAuthenticated)
             {
-                var admin = user.Roles.Any(elem => elem.RoleId == RoleManager.FindByName("admin").Id);
+                User user = await UserManager.FindByEmailAsync(User.Identity.Name);
 
-                List<string> roles = new List<string>();
-                user.Roles.ToList().ForEach(i => roles.Add(RoleManager.FindById(i.RoleId).Name));
-                    
-
-                return Json(new
+                if (user != null)
                 {
-                    user = new
+                    var admin = user.Roles.Any(elem => elem.RoleId == RoleManager.FindByName("admin").Id);
+
+                    List<string> roles = new List<string>();
+                    user.Roles.ToList().ForEach(i => roles.Add(RoleManager.FindById(i.RoleId).Name));
+
+
+                    return Json(new
                     {
-                        Email = user.Email,
-                        Name = user.Name,
-                        Address = user.Address,
-                        Code = user.Code,
-                        Discount = user.Discount,
-                        Roles = roles
-                    },
-                    admin,
-                    success = true
-                }, JsonRequestBehavior.AllowGet);
+                        user = new
+                        {
+                            Email = user.Email,
+                            Name = user.Name,
+                            Address = user.Address,
+                            Code = user.Code,
+                            Discount = user.Discount,
+                            Roles = roles
+                        },
+                        admin,
+                        success = true
+                    }, JsonRequestBehavior.AllowGet);
+                }
             }
-            return Json(new { success = false });
+                 
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles="admin")]

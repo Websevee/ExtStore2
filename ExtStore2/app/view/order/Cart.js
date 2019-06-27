@@ -6,8 +6,9 @@ Ext.define('Front.view.order.Cart', {
     title: 'Cart',
     height: 500,
 
-    beforeShow: function () {
+    beforeRender: function () {
         this.getStore().load();
+        console.log(this.getStore().data.items);
     },
 
     dockedItems: [{

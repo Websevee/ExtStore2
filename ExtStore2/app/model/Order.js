@@ -14,5 +14,13 @@ Ext.define('Front.model.Order', {
         {type: 'inclusion', field: 'Status',   list: ['New', 'Progress', 'End']},
     ],
 
-    hasMany: {model: 'OrderItem', name: 'orderitems'}
+    associations: [{
+        type: 'hasMany',
+        model: 'Order',
+        primaryKey: 'OrderId',
+        foreignKey: 'Id',
+        //autoLoad: true,
+        associationKey: 'OrderItems',
+        name: 'orderitems'
+    }],
 });

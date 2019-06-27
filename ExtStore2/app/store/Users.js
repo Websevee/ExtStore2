@@ -2,7 +2,7 @@ Ext.define('Front.store.Users', {
     extend: 'Ext.data.Store',
     model: 'Front.model.User',
 
-    autoLoad: true,
+    //autoLoad: true,
     autoSync: true,
     pageSize: 15,
 

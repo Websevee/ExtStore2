@@ -6,10 +6,10 @@ Ext.define('Front.view.product.Store', {
     title: 'Store',
     height: 500,
 
-    beforeShow: function () {
+    beforeRender: function () {
         this.getStore().load();
     },
-
+    
     columns: [
         {
             dataIndex: 'Name',

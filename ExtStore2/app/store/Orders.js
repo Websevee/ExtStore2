@@ -2,7 +2,7 @@ Ext.define('Front.store.Orders', {
     extend: 'Ext.data.Store',
     model: 'Front.model.Order',
 
-    autoLoad: true,
+    //autoLoad: true,
     autoSync: true,
     //pageSize: 10,
 
